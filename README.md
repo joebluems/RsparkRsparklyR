@@ -9,8 +9,8 @@ the capabilities of each when dealing with a distributed data platform: <br>
 <br>
 For the purposes of illustrating the options of R, we are training a linear model (Logistic Regression) whose coefficients will tell help us interpret the scores and provide reason codes, and a tree-based model (Random Forest). The feature importance from RF will help us understand the which features are influential in being selected for trees for further interpretation.  
 
-## R vs SparkR vs sparklyr
-With a distributed file systems comes unlimited storage and compute capability (if enough nodes are added). But there is no free lunch with R. Regular R code will run on MapR but use local resources. You need to enhance your basic R with other packages to use the cluster and you will have limited access to core R functions. It is important to know which tool to use in which scenario and also understand what resources you will be leveraging. <br>
+## R vs SparkR vs sparklyr on MapR
+With a distributed file systems comes unlimited storage and compute capability (if enough nodes are added). But there is no free lunch. Regular R code will run on MapR but use local resources (of whatever machine you've launched R). You need to enhance your R with other libraries to use the cluster and that will limit your access to core R functions. It is important to know which tool to use in which scenario and also understand what resources you will be leveraging. <br>
 ### R
 Use R when... <br>
 ### SparkR
