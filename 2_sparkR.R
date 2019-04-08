@@ -6,8 +6,10 @@ library(dplyr)
 
 ### read csv ###
 ### note: you will have to change the name of source file ###
+### if on a MapR cluster, path is relative to /mapr/<your_cluster/
 data <- read.df("./sample10k.csv", source = "csv", inferSchema = "true",header="true")
 summary(data)
+head(data)
 
 ### 60/40 split for train and test ###
 seed <- 873
