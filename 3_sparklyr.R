@@ -9,7 +9,7 @@ library(purrr)
 
 ### Note: you may need to set your SPARK_HOME environment variable for R to find spark
 ### Note: you will need to specify file location
-sc <- spark_connect(master = "local")
+sc <- spark_connect(master = "local[*]")
 data_tbl <- spark_read_csv(sc, name = "data", path = "file:///Users/joeblue/western/machineLearning/sample10k.csv", header = TRUE, infer_schema = TRUE, delimiter = ",")
 
 ## create partitions table references
