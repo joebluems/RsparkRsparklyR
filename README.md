@@ -12,12 +12,14 @@ For the purposes of illustrating the options of R, we are training a linear mode
 ## R vs SparkR vs sparklyr on MapR
 With a distributed file systems comes unlimited storage and compute capability (if enough nodes are added). But there is no free lunch. Regular R code will run on MapR but use local resources (of whatever machine you've launched R). You need to enhance your R with other libraries to use the cluster and that will limit your access to core R functions. It is important to know which tool to use in which scenario and also understand what resources you will be leveraging. <br>
 ### R
-Use R when... <br>
+With its POSIX-compliant file system, MapR gives the user the ability to run your R existing scripts with minimal to no changes (providing you install the libraries) while accessing distribued data. When you are running R from a cluster or edge node, the resources you're consuming (memory & compute) are entirely on that node and limited to a single thread. R is the best choice when the demands for data size and compute power are modest. <br>
 ### SparkR
-Use SparkR when ... <br>
+Spark is a compute engine that is able to take advantage of distributed files with parallel computing. It features extensive streaming, ML, SQL and graph libraries, plus several options for submitting commands (Scala, Python, and R shells) that allows you to get the most out of your MapR cluster.<br>
+Not all R code can be run in sparkR. Users traditionally prefer sparkR for jobs which require a lot of brute force (large data with a lot of aggregation, iterations or generally parallel work) for large-scale ingestion, feature extraction, model training or creating output to a distributed file system. If using multiple threads will speed up your job and extend the limits of R, consider sparkR.<br>
+When run in local model, sparkR will consume memory and compute from a single node, but has the ability to distribute among multiple threads (when you specify with local * ). Usually, local model is used for developing code and yarn mode is used for large-scale production jobs that need to be executed reliably. <br>
 ### sparklyr
-Use sparklyr when ... <br>
-
+The sparklyr package provides a connection to Spark with a complete **dplyr** backend. This is ideal for R users familiar with the dplyr functions for filtering and aggregating data who wish to use R for the visualization piece. <br>
+As with spark or sparkR, when run in local model, sparklyr will consume memory and compute from a single node, but has the ability to distribute among multiple threads (when you specify with local * ). Usually, local model is used for developing code and yarn mode is used for large-scale production jobs that need to be executed reliably. <br>
 ## R installation Notes
 It's  unlikely that you will have all the necessary R packages to run all of this code. <br>
 Unless you're the MapR cluster admin, you won't have access to add libraries for all users 
@@ -51,7 +53,7 @@ Try with the 10,000 record csv file. Regular might choke on the 100k file when i
 ## Step 3 - run the SparkR shell
 ```
 Find your spark home and launch the SparkR shell
-MapR cluster example: /opt/mapr/spark/spark-2.3.2/bin/sparkR
+MapR cluster example: /opt/mapr/spark/spark-2.3.2/bin/sparkR --master local[*]
 Verify you have the dpylr installed: library(dplyr)
 Install dplyr if needed: install.packages('dplyr')
 In separate terminal, open 2_sparkR.R in order to paste commands
