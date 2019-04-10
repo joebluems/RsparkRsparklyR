@@ -53,6 +53,7 @@ Execute the blocks of code to run and examine output
 If you launched R from your user folder the "./" path should work
 Try with the 10,000 record csv file. Regular might choke on the 100k file when it comes to random forest.
 <ctrl-d> to exit R
+Note: if you choose to save workspace it may create a very large file and launch SparkR unwantedly. If that happens, rm .Rdata when you're back at the prompt and it will clear your workspace.
 ```
 
 ## Step 3 - run the SparkR shell
