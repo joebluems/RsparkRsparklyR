@@ -83,4 +83,5 @@ The path needs to be fully qualifed for the file (i.e. file:///mapr/<cluster>/us
 Try these commands with the 10,000 and 100,000 csv files. sparklyr should have no trouble with the larger files.
 Try to execute in yarn mode with sc <- spark_connect(master = "yarn")
 <ctrl-d> to exit R
+Note: if you choose to save workspace it may create a very large file and launch SparkR unwantedly. If that happens, rm .Rdata when you're back at the prompt and it will clear your workspace.
 ```
